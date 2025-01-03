@@ -1,0 +1,40 @@
+@startuml Notification
+
+entity User {
+    *id VARCHAR(100) <<PK>>
+    --
+    * name VARCHAR(100)
+}
+
+entity Notification {
+    * id INT AUTO INCREMENT <<PK>>
+    --
+    * Title VARCHAR(225)
+    * Detail TEXT 
+    * Created_at TIMESTAMP
+    --
+    user_id VARCHAR(100)
+    category_id VARCHAR(100) 
+}
+
+entity Category {
+    * id VARCHAR(100) <<PK>>
+    --
+    * name VARCHAR(100)
+}
+
+entity NotificationRead {
+    * id INT Auto INCREMENT <<PK>>
+    --
+    * is_read BOOLEAN
+    --
+    * notification_id INT
+    * user_id VARCHAR(100)
+}
+
+User ||--o{ Notification
+Category ||--o{ Notification
+Notification ||--o{ NotificationRead
+User ||--o{ NotificationRead
+
+@enduml
